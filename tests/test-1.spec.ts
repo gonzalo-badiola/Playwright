@@ -9,10 +9,11 @@ import { test, Browser, Page, expect } from "@playwright/test";
       { nombre: "Cursos", url: "/cursos", tituloEsperado: "Cursos" },
       { nombre: "Udemy", url: "/udemy", tituloEsperado: "Udemy" },
       { nombre: "Recursos", url: "/recursos", tituloEsperado: "Recursos" },
-      { nombre: "Blog", url: "/login", tituloEsperado: "Acceder a Free Range Testers" },
+      { nombre: "Blog", url: "/blog", tituloEsperado: "Free Range Testers" },
       // Agrega más secciones si es necesario
     ];
-     test.setTimeout(150000);
+    
+    test.setTimeout(60000); 
 
     for (const seccion of secciones) {
       
@@ -32,7 +33,7 @@ import { test, Browser, Page, expect } from "@playwright/test";
 
         await test.step(`Soy redirigido a la sección de título "${seccion.tituloEsperado}"`, async () => {
           await expect(page).toHaveTitle(seccion.tituloEsperado);
-
+          page.getByText('Este es otro parrafo de ejemplo', {exact: true});
         });
       });
     }
