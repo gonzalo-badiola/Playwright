@@ -25,28 +25,32 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
-    testIdAttribute: 'pw-id',
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    baseURL: 'https://thefreerangetester.github.io/sandbox-automation-testing/',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
+  /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'Computadora',
+      testMatch: "/*.spec.ts",
       use: { ...devices['Desktop Chrome'] },
     },
-
+ 
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'Iphone',
+      testMatch: "/*.spec.ts",
+      use: { ...devices['iPhone 12'] },
     },
-
+ 
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: 'iPad',
+      testMatch: "/*.spec.ts",
+      use: { ...devices['iPad (gen 7)'] },
     },
 
     /* Test against mobile viewports. */

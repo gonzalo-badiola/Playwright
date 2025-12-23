@@ -8,17 +8,20 @@ test.setTimeout(200000);
 test.describe("Acciones en el automation Sandbox", () => {
   test("Click en Boton ID Dinamico", async ({ page }) => {
     await page.goto(
-      "https://thefreerangetester.github.io/sandbox-automation-testing/"
+      ""
     );
 
+    await test.step('Puedo hacer click en un boton ID dinamico', async () => {
     const botonIDDinamico = page.locator("button:has-text('ID')");
     await botonIDDinamico.click();
     await expect(page.getByText('OMG, aparezco después de 3')).toBeVisible();
+    })
+    
   });
 
   test("Lleno un campo de texto en automation sandbox", async ({ page }) => {
     await page.goto(
-      "https://thefreerangetester.github.io/sandbox-automation-testing/"
+      ""
     );
     await test.step('Puedo ingresar texto en el campo de texto' , async () => {
       await expect(page.getByRole("textbox", { name: "Un aburrido texto" }), 'El campo de texto no admite edicion').toBeEditable();
@@ -31,7 +34,7 @@ test.describe("Acciones en el automation Sandbox", () => {
   test("Puedo seleccionar checkboxes", async ({ page }) => {
     await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
       await page.goto(
-        "https://thefreerangetester.github.io/sandbox-automation-testing/"
+        ""
       );
     });
 
@@ -45,7 +48,7 @@ test.describe("Acciones en el automation Sandbox", () => {
   test("Puedo seleccionar Radio Button", async ({ page }) => {
     await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
       await page.goto(
-        "https://thefreerangetester.github.io/sandbox-automation-testing/"
+        ""
       );
     });
 
@@ -57,7 +60,7 @@ test.describe("Acciones en el automation Sandbox", () => {
   test("Puedo seleccionar un Dropdown", async ({ page }) => {
     await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
       await page.goto(
-        "https://thefreerangetester.github.io/sandbox-automation-testing/"
+        ""
       );
     });
 
@@ -84,7 +87,7 @@ test.describe("Acciones en el automation Sandbox", () => {
   test ("Valido los nombres de la tabla estatica", async ({page}) => {
 await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
       await page.goto(
-        "https://thefreerangetester.github.io/sandbox-automation-testing/");
+        "");
     });
     await test.step("puedo validar los elementos de la tabla estatica ", async () => {
       const valoresColumnaNombres = await page.$$eval('h2:has-text("Tabla estática") + table tbody tr td:nth-child(2)', element => element.map(element => element.textContent));
@@ -97,7 +100,7 @@ await test.step("Dado que navego al navegador de Free Range Testers ", async () 
 
   test('Valido que todos los valores cambian en la tabla dinámica luego de un reload', async ({ page }) => {
             await test.step('Dado que navego al Sandbox de Automation de Free Range Testers', async () => {
-                await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+                await page.goto('');
             })
  
             await test.step('Valido que los valores cambiaron al hacer un reload a la web', async () => {
@@ -122,7 +125,7 @@ await test.step("Dado que navego al navegador de Free Range Testers ", async () 
 
   test('Ejemplo de Soft Assertions', async ({ page }) => {
             await test.step('Dado que navego al Sandbox de Automation de Free Range Testers', async () => {
-                await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+                await page.goto('');
             })
             await test.step('Valido que todos los elementos de los checkboxes son los correctos', async () => {
                 await expect.soft(page.getByText('Pizza 🍕'), 'No se encontró el elemento Pizza 🍕').toBeVisible();
@@ -136,7 +139,7 @@ await test.step("Dado que navego al navegador de Free Range Testers ", async () 
 
         test('Validando dentro de un popup', async ({ page }) => {
             await test.step('Dado que navego al sandbox', async () => {
-                await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+                await page.goto('');
             })
  
             await test.step('Cuando hago click en el botón popup', async () => {
@@ -156,7 +159,7 @@ await test.step("Dado que navego al navegador de Free Range Testers ", async () 
   test("Puedo seleccionar un Dropdown de los dias", async ({ page }) => {
     await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
       await page.goto(
-        "https://thefreerangetester.github.io/sandbox-automation-testing/"
+        ""
       );
     });
 
@@ -166,30 +169,32 @@ await test.step("Dado que navego al navegador de Free Range Testers ", async () 
     });
   });
 
-  // test("Puedo subir archivos a Automation Sandbox", async ({ page }) => {
-  //   await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
-  //     await page.goto(
-  //       "https://thefreerangetester.github.io/sandbox-automation-testing/"
-  //     );
-  //   });
+  test("Puedo subir archivos a Automation Sandbox - NO IMPLEMENTADO EN PRODUCCION", async ({ page }) => {
+    test.fixme()
+    await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
+      await page.goto(
+        ""
+      );
+    });
 
-  //   await test.step("Agregue archivos para ser subidos", async () => {
-  //     await page.getByLabel('Upload file').setInputFiles('pathAlArchivo.pdf')
-  //     await page.getByLabel('Upload file').setInputFiles([]) // para borrar el archivo
-  //   });
-  // })
+    await test.step("Agregue archivos para ser subidos", async () => {
+      await page.getByLabel('Upload file').setInputFiles('pathAlArchivo.pdf')
+      await page.getByLabel('Upload file').setInputFiles([]) // para borrar el archivo
+    });
+  })
 
-  // test("Puedo hacer drap and drop de elementos en Automation Sandbox", async ({ page }) => {
-  //   await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
-  //     await page.goto(
-  //       "https://thefreerangetester.github.io/sandbox-automation-testing/"
-  //     );
-  //   });
+  test("Puedo hacer drap and drop de elementos en Automation Sandbox - NO IMPLEMENTADO EN PRODUCCION", async ({ page }) => {
+    test.fixme()
+    await test.step("Dado que navego al navegador de Free Range Testers ", async () => {
+      await page.goto(
+        ""
+      );
+    });
 
-  //   await test.step("Agregue archivos para ser subidos", async () => {
-  //     await page.getByTestId('DragFrom').dragTo(page.getByTestId('DragTo'))
-  //   });
-  // })
+    await test.step("Agregue archivos para ser subidos", async () => {
+      await page.getByTestId('DragFrom').dragTo(page.getByTestId('DragTo'))
+    });
+  })
 
 
 })
