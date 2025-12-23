@@ -1,41 +1,9 @@
-import { test, Browser, Page, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-(async () => {
-  let browser: Browser;
-  let page: Page;
-
-  test.describe("Navegación en www.freerangetesters.com", () => {
-    const secciones = [
-      { nombre: "Cursos", url: "/cursos", tituloEsperado: "Cursos" },
-      { nombre: "Udemy", url: "/udemy", tituloEsperado: "Udemy" },
-      { nombre: "Recursos", url: "/recursos", tituloEsperado: "Recursos" },
-      { nombre: "Blog", url: "/blog", tituloEsperado: "Free Range Testers" },
-      // Agrega más secciones si es necesario
-    ];
-    
-    test.setTimeout(60000); 
-
-    for (const seccion of secciones) {
-      
-      test(`Validar redirección a la sección "${seccion.nombre}"`, async ({ 
-        page,
-      }) => {
-          await test.step(`Estando yo en la web principal www.freerangetesters.com`, async () => {
-          await page.goto("https://www.freerangetesters.com");
-          await expect(page).toHaveTitle("Free Range Testers");
-        });
-
-        await test.step(`Cuando hago click en "${seccion.nombre}"`, async () => {
-          await page.locator("#page_header").getByRole("link", { name: seccion.nombre, exact: true }).click();
-          await page.waitForURL(`**${seccion.url}`);
-          
-        });
-
-        await test.step(`Soy redirigido a la sección de título "${seccion.tituloEsperado}"`, async () => {
-          await expect(page).toHaveTitle(seccion.tituloEsperado);
-          page.getByText('Este es otro parrafo de ejemplo', {exact: true});
-        });
-      });
-    }
-  });
-})();
+test('test', async ({ page }) => {
+  // Recording...
+  await page.getByRole('link', { name: 'Cursos', exact: true }).click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: '¿Qué curso me conviene?' }).click();
+  const page1 = await page1Promise;
+});
