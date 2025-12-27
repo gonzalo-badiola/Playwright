@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { error } from "console";
+import { SandboxPage } from './Pages/SandboxPage'
 
 const textoAEscribir = "Estoy aprendiendo playwright";
 
@@ -13,7 +14,7 @@ test.describe("Acciones en el automation Sandbox", () => {
 
     await test.step('Puedo hacer click en un boton ID dinamico', async () => {
     const botonIDDinamico = page.locator("button:has-text('ID')");
-    await botonIDDinamico.click();
+    await botonIDDinamico.click({ force: true });
     await expect(page.getByText('OMG, aparezco después de 3')).toBeVisible();
     })
     
@@ -38,11 +39,19 @@ test.describe("Acciones en el automation Sandbox", () => {
       );
     });
 
-    await test.step("Puedo seleccionar y deseleccionar un checkbox para pasta", async () => {
-      await page.getByRole("checkbox", { name: "Pasta 🍝" }).check();
+    await test.step("Puedo seleccionar un checkbox para pasta", async () => {
+      /* await page.getByRole("checkbox", { name: "Pasta 🍝" }).check(); */
+      const sandbox = new SandboxPage(page);
+      await sandbox.checkPasta();
+      await expect(sandbox.pastaCheckBox, 'El checkbox no fue seleccionado').toBeChecked();
+    });
+
+    await test.step("Puedo deseleccionar un checkbox para pasta", async () => {
       await page.getByRole("checkbox", { name: "Pasta 🍝" }).uncheck();
       await expect(page.getByRole("checkbox", { name: "Pasta 🍝" })).not.toBeChecked();
-    });
+    })
+
+
   });
 
   test("Puedo seleccionar Radio Button", async ({ page }) => {

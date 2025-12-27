@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
  
-const REPO = 'REPOLOCO';
-const USER = 'TheFreeRangeTester';
+const REPO = 'Playwright';
+const USER = 'gonzalo-badiola';
  
 test.beforeAll(async ({ request }) => {
     const response = await request.post('user/repos', {
@@ -47,7 +47,7 @@ test('Puedo crear un feature request', async ({ request }) => {
     }));
 });
  
-test.afterAll(async ({ request }) => {
+/* test.afterAll(async ({ request }) => {
     const response = await request.delete(`/repos/${USER}/${REPO}`);
     expect(response.ok()).toBeTruthy();
-});
+}); */
