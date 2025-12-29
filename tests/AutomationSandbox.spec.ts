@@ -206,4 +206,4 @@ await test.step("Dado que navego al navegador de Free Range Testers ", async () 
   })
 
 
-})
+});
